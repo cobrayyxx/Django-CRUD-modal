@@ -1,0 +1,985 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  
+  <!-- <h2>News API</h2>
+  {% for res in news.result %}
+    {% for article in res.json_data.articles|slice:":1" %}
+    <p>The title is <strong>{{ article.title }}</strong>, and the description is <strong>{{ article.description }}</strong> right now.</p>
+    {% endfor %}
+  {% endfor %} -->
+  <div class="loading ">
+    <div class="loading-container">
+      <p>Just a sec...</p>
+      <img class="loader" src="{% static 'img/rubik.svg' %}"/>
+    </div>
+  </div>
+  <!-- if you want to keep the navbar hidden you can add this class to the navbar "navbar-burger"-->
+  <nav class="navbar navbar-default navbar-transparent navbar-fixed-top" role="navigation">
+      
+      <div class="container">
+      <div class="navbar-header">
+          <button id="menu-toggle" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar bar1"></span>
+              <span class="icon-bar bar2"></span>
+              <span class="icon-bar bar3"></span>
+          </button>
+          <a href="http://www.creative-tim.com" class="navbar-brand">
+             Rubik
+          </a>
+      </div>
+  
+      <div class="navbar-scroll-to collapse navbar-collapse" >
+        <ul class="nav navbar-nav navbar-right navbar-uppercase">
+              <li>
+                  <a href="" data-scroll="true" data-id="#whoWeAre" class="active"> 
+                      About
+                  </a>
+              </li>
+              <li>
+                  <a href="" data-scroll="true" data-id="#friends"> 
+                      Reviews
+                  </a>
+              </li>
+              <li>
+                  <a href="" data-scroll="true" data-id="#team"> 
+                      Team
+                  </a>
+              </li>
+              <li>
+                  <a href="" data-scroll="true" data-id="#numbers"> 
+                      Numbers
+                  </a>
+              </li>
+              <li>
+                  <a href="" data-scroll="true" data-id="#contact"> 
+                      Contact
+                  </a>
+              </li>
+              <li class="social-links">
+                  <a href="#"> 
+                      <i class="fa fa-facebook"></i>
+                  </a>
+                  <a href="#"> 
+                      <i class="fa fa-twitter"></i>
+                  </a>
+                  <a href="#"> 
+                      <i class="fa fa-instagram"></i>
+                  </a>
+              </li>
+         </ul>
+      </div><!-- /.navbar-collapse -->
+    </div>
+  </nav>
+  
+      
+  <div class="wrapper">
+  
+      <div class="section section-header">
+          <div class="full-image pattern-image"> 
+              <img src="{% static 'img/rubik_background.jpg' %}"/>
+  
+              <div class="container"> 
+                  <div class="content content-with-opacity">
+                      <p><span>by </span>cobrayyxx<p>
+                      <h1>News API</h1>
+                      <div class="separator-container">
+                        <div class="separator line-separator">∎</div>            
+                      </div>
+                      <h5>Read some News in here!</h5>
+                  </div>               
+              </div>
+          </div>
+      </div>
+  
+      <div class="section section-we-are-2 radu" id="whoWeAre">
+         <div class="text-area">
+              <div class="container">
+                  <div class="row">
+                      <div class="col-md-4">
+                        <div class="title add-animation">
+                          {% for res in news.result %}
+                            {% for article in res.json_data.articles|slice:":1" %}
+                              <h2>{{article.title}}</h2>
+                              <h5 class="text-gray">{{article.author}}</h5>
+                           
+                            
+                            <div class="separator-container">
+                            <div class="separator line-separator">∎</div>
+                          </div>
+                        </div>  
+                      </div>
+                      
+                      <div class="col-md-7 col-md-offset-1"> 
+                          <p class="add-animation animation-1">{{article.content}}</p>
+                          <p class="add-animation animation-2">{{article.content}} </p>
+                          <!-- <p class="add-animation animation-3">{{article.content}}</p> -->
+                      </div>
+                      {% endfor %}
+                      {% endfor %}
+                  </div>          
+              </div>
+          </div>
+      </div>
+  
+      <div class="section section-we-made-1 section-with-hover">
+          <div class="row">
+                  <div class="col-lg-4 col-md-6 col-sm-6">
+                      <div class="project add-animation animation-1">
+                    {% for res in news.result %}
+                            <img src="{%static 'img/rubik_background2.jpg'%}"/>
+                            <a class="over-area color-1" href="javascript:void(0)" onClick="rubik.showModal(this)" data-target="project_1">
+                                 <div class="content">
+                                  {% for article in res.json_data.articles|slice:"1:2" %}
+                                    <h4>{{article.title}}</h4>
+                                    <p>Click for more... </p>
+                                  {% endfor %}
+                                </div>
+                            </a>  
+                      </div>
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-6">
+                      <div class="project add-animation animation-2">
+                            <img src="{%static 'img/rubik_background2.jpg'%}"/>
+                             <a class="over-area color-1" href="javascript:void(0)" onClick="rubik.showModal(this)" data-target="project_2">
+                                 <div class="content">
+                                  {% for article in res.json_data.articles|slice:"2:3"%}
+                                    <h4>{{article.title}}</h4>
+                                    <p>Click for more... </p>
+                                  {% endfor %}
+                                </div>
+                            </a>
+                      </div>
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-6">
+                      <div class="project add-animation animation-3">
+                            <img src="{%static 'img/rubik_background2.jpg'%}"/>
+                             <a class="over-area color-1" href="javascript:void(0)" onClick="rubik.showModal(this)" data-target="project_3">
+                                 <div class="content">
+                                  {% for article in res.json_data.articles|slice:"3:4"%}
+                                    <h4>{{article.title}}</h4>
+                                    <p>Click for more... </p>
+                                  {% endfor %}
+                                </div>
+                            </a>
+                      </div>
+                  </div>
+               <div class="col-lg-4 col-md-6 col-sm-6">
+                  <div class="project add-animation animation-1">
+                      <img src="{%static 'img/rubik_background2.jpg'%}">
+                      <a class="over-area color-1" href="javascript:void(0)" onClick="rubik.showModal(this)" data-target="project_4">
+                           <div class="content">
+                            {% for article in res.json_data.articles|slice:"4:5"%}
+                              <h4>{{article.title}}</h4>
+                              <p>Click for more... </p>
+                            {% endfor %}
+                          </div>
+                      </a>
+                   </div>
+              </div>
+              <div class="col-lg-4 col-md-6 col-sm-6">
+                  <div class="project add-animation animation-2">
+                      <img src="{%static 'img/rubik_background2.jpg'%}">
+                      <a class="over-area color-1" href="javascript:void(0)" onClick="rubik.showModal(this)" data-target="project_5">
+                           <div class="content">
+                            {% for article in res.json_data.articles|slice:"5:6"%}
+                              <h4>{{article.title}}</h4>
+                              <p>Click for more... </p>
+                            {% endfor %}
+                          </div>
+                      </a>
+                  </div>
+              </div>
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                  <div class="project add-animation animation-3">
+                      <img src="{%static 'img/rubik_background2.jpg'%}">
+                      <a class="over-area color-1" href="javascript:void(0)" onClick="rubik.showModal(this)" data-target="project_6">
+                           <div class="content">
+                            {% for article in res.json_data.articles|slice:"6:7"%}
+                              <h4>{{article.title}}</h4>
+                              <p>Click for more... </p>
+                          {% endfor %}
+                    {% endfor %} <!-- end loop news.result -->
+                          </div>
+                      </a>
+                  </div>
+              </div>
+            </div>
+      </div>
+  
+       <div class="section section-we-do-1" id="values">
+        <div class="text-area">
+          <div class="container">
+              <div class="row">
+                <div class="title add-animation">  
+                 
+                     <h5 class="text-gray"> Read this too... </h5>       
+                     <h2>Some of the Latest News</h2>
+                     <div class="separator-container">
+                          <div class="separator line-separator">∎</div>
+                      </div>
+                 </div>
+              </div>
+              <div class="row">
+                 <div class="col-md-3 col-sm-6">
+                     <div class="card add-animation animation-1">
+                      {% for res in news.result %}
+                        {% for article in res.json_data.articles|slice:"7:8" %}
+                         <h5 class="text-gray">01.</h5>
+                         <h3>{{article.title}}</h3>
+                         <p>{{article.description}}</p>
+                        {% endfor %}
+                     </div>
+                 </div>
+                 <div class="col-md-3 col-sm-6">
+                       <div class="card add-animation animation-2">
+                        {% for article in res.json_data.articles|slice:"8:9" %}
+                          <h5 class="text-gray">02.</h5>
+                          <h3>{{article.title}}</h3>
+                          <p>{{article.description}}</p>
+                        {% endfor %}
+                     </div>
+                 </div>
+                 <div class="col-md-3 col-sm-6">
+                       <div class="card add-animation animation-3">
+                        {% for article in res.json_data.articles|slice:"9:10" %}
+                          <h5 class="text-gray">03.</h5>
+                          <h3>{{article.title}}</h3>
+                          <p>{{article.description}}</p>
+                        {% endfor %}
+                     </div>
+                 </div>
+                 <div class="col-md-3 col-sm-6">
+                       <div class="card add-animation animation-4">
+                        {% for article in res.json_data.articles|slice:"10:11" %}
+                          <h5 class="text-gray">04.</h5>
+                          <h3>{{article.title}}</h3>
+                          <p>{{article.description}}</p>
+                        {% endfor %}
+                      {% endfor %}
+                     </div>
+                 </div>
+              </div>
+          </div>
+        </div>
+      </div>
+  
+   <div class="section section-clients-2" id="friends">
+      <div class="container">
+        <div class="text-area">
+             <div class="title add-animation">  
+                 <h5 class="text-gray">some of our</h5> 
+                 <h2>Friends Together</h2>
+                 <div class="separator-container">
+                    <div class="separator line-separator">∎</div>
+                 </div>
+             </div> 
+           <div class="tab-content quotes add-animation animation-2">  
+              <div class="tab-pane active" id="canon">
+                 <p class="large">
+                 These guys create stunning looking houses! We absolutely love their work and would personally contact them to help us create the perfect space for a new office!
+                 </p>
+              </div>          
+              <div class="tab-pane" id="samsung">
+                     <p class="large">These guys put our gadgets into a great looking context. They did an amazing work re-designing our concept stores and implicitly increasing our sales.</p>
+             </div>
+              <div class="tab-pane" id="sony">
+                    <p class="large">The 'Houses' team did a great work while we were collaborating. They provided a vision that was in deep connection with our needs and helped us achieve our goals. </p>
+              </div>
+              <div class="tab-pane" id="intel">
+                    <p class="large">We couldn't thank the 'Houses' team enough for their excellent service. We had an wonderful time developing the plans for our new office building and we can tell you that our employees felt at home since the first day they moved here.</p>
+              </div>
+            </div>
+            <ul class="nav nav-text list-logos add-animation animation-2" role="tablist">  
+              <li class="active">
+                <a href="../#canon" role="tab" data-toggle="tab">
+                  <img src="{%static 'img//clients/forbes.svg'%}" alt="">
+                  <img src="{%static 'img//clients/forbes_h.svg'%}" alt="">
+               
+                </a>
+              </li>
+              <li>
+                <a href="../#samsung" role="tab" data-toggle="tab">
+                  <img src="{%static 'img/clients/qube.svg'%}" alt="">
+                  <img src="{%static 'img/clients/qube_h.svg'%}" alt="">
+               
+                </a>
+              </li>
+              <li>
+                <a href="../#sony" role="tab" data-toggle="tab">
+                  <img src="{%static 'img/clients/axa.svg'%}" alt="">
+                  <img src="{%static 'img/clients/axa_h.svg'%}" alt="">
+                 
+                </a>
+              </li>
+               <li>
+                <a href="../#intel" role="tab" data-toggle="tab">
+                  <img src="{%static 'img/clients/dezine.svg'%}" alt="">
+                  <img src="{%static 'img/clients/dezine_h.svg'%}" alt="">
+                
+                </a>
+              </li>
+            </ul>
+                           
+          </div>
+        </div>
+      </div>
+  
+      <div class="section section-team-4" id="team">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4">
+              <div  class="title add-animation">
+                  <h5 class="text-gray">our</h5>
+                  <h2>Masterminds</h2>
+                  <div class="separator-container">
+                    <div class="separator line-separator">∎</div>
+                  </div>
+              </div>
+            </div>
+            <div class="col-md-7 col-offset-1">
+              <div class="team">
+                <div class="row">
+                  <div class="col-md-4 col-sm-6">
+                    <div class="member add-animation animation-1">
+              
+                      <img class="img-circle" src="{%static 'img/faces/face_1.jpg'%}"/>
+                      <div class="description">
+                        <h3 class="big-text">Paul</h3>
+                        <p class="small-text">Architect</p>
+                        <p class="details"> 
+                          CEO / CO-Founder <br>
+                          RocAFella.com
+                        </p>
+                     </div>
+                     <div class="social-buttons hidden-xs">
+                        <button href="#" class="btn btn-social btn-simple"><i class="fa fa-linkedin"></i></button>
+                        <button href="#" class="btn btn-social btn-simple"><i class="fa fa-google-plus"></i></button>
+                        <button href="#" class="btn btn-social btn-simple"><i class="fa fa-pinterest"></i></button>
+                     </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-sm-6">
+                    <div class="member add-animation animation-2">
+                      <img class="img-circle" src="{%static 'img/faces/face_1.jpg'%}"/>
+                      <div class="description">
+                        <h3 class="big-text">Andrew</h3>
+                        <p class="small-text">Interior Designer</p>
+                        <p class="details"> 
+                          CO-Founder <br>
+                          andrew@houses.com
+                        </p>
+                     </div>
+                     <div class="social-buttons hidden-xs">
+                        <button href="#" class="btn btn-social btn-simple"><i class="fa fa-linkedin"></i></button>
+                        <button href="#" class="btn btn-social btn-simple"><i class="fa fa-google-plus"></i></button>
+                        <button href="#" class="btn btn-social btn-simple"><i class="fa fa-pinterest"></i></button>
+                     </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="member add-animation animation-3">
+                      <img class="img-circle" src="{%static 'img/faces/face_1.jpg'%}"/>
+                      <div class="description">
+                        <h3 class="big-text">Rick</h3>
+                        <p class="small-text">Designer</p>
+                        <p class="details"> 
+                          CTO <br>
+                          rickman@houses.com
+                        </p>
+                     </div>
+                     <div class="social-buttons hidden-xs">
+                        <button href="#" class="btn btn-social btn-simple"><i class="fa fa-linkedin"></i></button>
+                        <button href="#" class="btn btn-social btn-simple"><i class="fa fa-google-plus"></i></button>
+                        <button href="#" class="btn btn-social btn-simple"><i class="fa fa-pinterest"></i></button>
+                     </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  
+    <div class="section section-numbers-2" id="numbers">
+          <div class="parallax pattern-image">
+    
+              <img src="{%static 'img/faces/rubik_background.jpg'%}"/>
+              
+          </div>
+          <div class="container">
+              <div class="row">
+                 <div class="col-md-8 col-md-offset-2 text-center">
+                      <div class="description">                 
+                         <div class="title">
+                              <h5>it's a fact that</h5>
+                             <h2>Numbers don't lie</h2>
+                             <div class="separator-container">
+                              <div class="separator line-separator">∎</div>
+                            </div>
+                         </div>
+                     </div>
+                 </div>
+              </div>
+              <div class="clearfix"></div>
+              <div class="row">
+                 <div class="col-sm-4">
+                     <div class="card card-plain">
+                         <h3>Customers</h3>
+                         <h5>Enterprises and private</h5>
+                         <div class="number" id="customersNo">
+                          574
+                         </div>
+                     </div>
+                 </div>
+                 <div class="col-sm-4">
+                     <div class="card card-plain">
+                         <h3>Projects</h3>
+                         <h5>Design, Sketch and Plan</h5>
+                         <div class="number" id="projectsNo">
+                          1.257
+                         </div>
+                     </div>
+                 </div>
+                 <div class="col-sm-4">
+                     <div class="card card-plain">
+                         <h3>Cities</h3>
+                         <h5>Where you can find our work</h5>
+                         <div class="number" id="citiesNo">
+                             52
+                         </div>
+                     </div>
+                 </div> 
+              </div>          
+          </div>
+      </div>
+  
+   <div class="section section-contact-2" id="contact">
+          <div class="container">   
+            <div class="text-area">
+                <div class="title add-animation">
+                    <h5 class="text-gray">here you can</h5>
+                    <h2>Contact Us</h2>
+                    <div class="separator-container">
+                      <div class="separator line-separator">∎</div>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group add-animation animation-1">
+                          <label>Your Full Name</label>
+                          <input type="text" value="" placeholder="Michael Jordan" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div  class="form-group add-animation animation-2">
+                            <label>Your Email</label>
+                            <input type="text" value="" placeholder="michael.j@gmail.com" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div  class="form-group add-animation animation-3">
+                            <label>Subject</label>
+                            <input type="text" value="" placeholder="Say hi to you" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div  class="form-group add-animation animation-3">
+                            <textarea class="form-control" placeholder="Here you can write your nice text" rows="8"></textarea>
+                        </div>
+                    <div>
+                    <div class="col-md-2 col-md-offset-5">
+                         <button  class="btn btn-lg btn-black btn-contact">
+                            SEND <i class="fa fa-paper-plane"></i>
+                         </button>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      
+      <footer class="footer footer-big footer-color-black" id="footerTrigger">
+          <div class="container">
+              <div class="row">
+                  <div class="col-md-2 col-sm-3">
+                    <div class="info add-animation-stopped animation-1">
+                        <h5 class="title">Company</h5>
+                        <nav>
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        Home
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                       Find offers
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Discover Projects
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Our Portfolio
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        About Us
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                      </div>
+                  </div>
+                  <div class="col-md-3 col-md-offset-1 col-sm-3">
+                    <div class="info add-animation-stopped animation-2">
+                        <h5 class="title"> Help and Support</h5>
+                        <nav>
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                       Contact Us
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                       How it works
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Terms &amp; Conditions
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Company Policy
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                       Money Back
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                      </div>
+                  </div>
+                  
+                  <div class="col-md-3 col-sm-3">
+                    <div class="info add-animation-stopped animation-3">
+                        <h5 class="title">Latest News</h5>
+                        <nav>
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                       <i class="fa fa-twitter"></i> <b>Get Shit Done</b>
+                                       The best kit in the market is here, just give it a try and let us...
+                                       <hr class="hr-small">
+                                    </a>
+                                </li>
+                                <li>
+                                      <a href="#">
+                                       <i class="fa fa-twitter"></i>
+                                       We've just been featured on <b> Awwwards Website</b>! Thank you everybody for...
+                                    </a>
+                                </li>
+                              
+                            </ul>
+                        </nav>
+                    </div>
+                  </div>
+                  <div class="col-md-2 col-md-offset-1 col-sm-3">
+                    <div class="info add-animation-stopped animation-4">
+                        <h5 class="title">Follow us on</h5>
+                        <nav>
+                            <ul>
+                                <li>
+                                    <a href="#" class="btn btn-social btn-facebook btn-simple">
+                                        <i class="fa fa-facebook-square"></i> Facebook
+                                    </a>
+                                </li>
+                                 <li>
+                                     <a href="#" class="btn btn-social btn-dribbble btn-simple">
+                                        <i class="fa fa-dribbble"></i> Dribbble
+                                    </a>
+                                </li>
+                                <li>
+                                   <a href="#" class="btn btn-social btn-twitter btn-simple">
+                                        <i class="fa fa-twitter"></i> Twitter
+                                    </a>
+                                </li>
+                                <li>
+                                     <a href="#" class="btn btn-social btn-reddit btn-simple">
+                                        <i class="fa fa-google-plus-square"></i> Google+
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                  </div> 
+              </div>
+              <hr>
+              <div class="copyright">
+                  © 2015 Creative Tim, made with love
+              </div>
+          </div>
+      </footer>
+  </div> <!-- end wrapper -->
+  
+  <div class="project-content" id="project_1">
+    <span class="icon-close"><i class="pe-7s-close-circle"></i></span>
+    <div>
+      <div class="project-details">
+        <div class="container">
+          <div class="project-title">
+          {% for res in news.result%}
+            {% for article in res.json_data.articles|slice:"1:2"%}
+              <h5>{{article.author}}<span>.</span></h5>
+              <h2>{{article.title}}</h2>
+            
+              <div class="separator-container">
+                <div class="separator line-separator">∎</div>
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="project-text">
+                <p><span>Published</span>{{article.publishedAt}}</p>
+                <p><span>Web</span>{{article.source.name}}</p>
+                <p><span>Author</span>{{article.author}}</p>
+                <!-- <p><span>Size</span>1000sqft</p> -->
+                <br>
+                <p>{{article.content}}</p>
+                <p>{{article.description}}</p>
+              </div>
+            </div>
+            {% endfor %}
+  
+            <div class="col-md-8">
+              <div class="row">
+                  <div class="col-md-6">
+                      <div class="project-image">
+                     
+                         <img src="{%static 'img/rubik_background.jpg'%}">
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="project-image">
+                        <img src="{%static 'img/rubik_background.jpg'%}">
+                      </div>
+                  </div>
+                    <div class="col-md-6">
+                      <div class="project-image">
+                        <img src="{%static 'img/rubik_background.jpg'%}">
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="project-image">
+                        <img src="{%static 'img/rubik_background.jpg'%}">
+                      </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="project-content" id="project_2">
+    <span class="icon-close"><i class="pe-7s-close-circle"></i></span>
+    <div>
+      <div class="project-details">
+        <div class="container">
+          <div class="project-title">
+            {% for article in res.json_data.articles|slice:"2:3"%}
+              <h5>{{article.author}}<span>.</span></h5>
+              <h2>{{article.title}}</h2>
+          
+              <div class="separator-container">
+              <div class="separator line-separator">∎</div>
+            </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="project-text">
+              <p><span>Published</span>{{article.publishedAt}}</p>
+              <p><span>Web</span>{{article.source.name}}</p>
+              <p><span>Author</span>{{article.author}}</p>
+              <!-- <p><span>Size</span>1000sqft</p> -->
+              <br>
+              <p>{{article.content}}</p>
+              <p>{{article.description}}</p>
+            </div>
+          </div>
+          {% endfor %}
+            <div class="col-md-8">
+              <div class="row">
+                  <div class="col-md-6">
+                      <div class="project-image">
+                        <img src="{%static 'img/rubik_background.jpg'%}">
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="project-image">
+                         <img src="{%static 'img/rubik_background.jpg'%}"/>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="project-image">
+                         <img src="{%static 'img/rubik_background.jpg'%}"/>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="project-image">
+                         <img src="{%static 'img/rubik_background.jpg'%}"/>
+                      </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="project-content" id="project_3">
+    <span class="icon-close"><i class="pe-7s-close-circle"></i></span>
+    <div>
+      <div class="project-details">
+        <div class="container">
+          <div class="project-title">
+            {% for article in res.json_data.articles|slice:"3:4"%}
+            <h5>{{article.author}}<span>.</span></h5>
+            <h2>{{article.title}}</h2>
+          
+            <div class="separator-container">
+              <div class="separator line-separator">∎</div>
+            </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="project-text">
+              <p><span>Published</span>{{article.publishedAt}}</p>
+              <p><span>Web</span>{{article.source.name}}</p>
+              <p><span>Author</span>{{article.author}}</p>
+              <!-- <p><span>Size</span>1000sqft</p> -->
+              <br>
+              <p>{{article.content}}</p>
+              <p>{{article.description}}</p>
+            </div>
+          </div>
+          {% endfor %}
+            <div class="col-md-8">
+              <div class="row">
+                  <div class="col-md-6">
+                      <div class="project-image">
+                         <img src="{%static 'img/rubik_background.jpg'%}"/>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="project-image">
+                         <img src="{%static 'img/rubik_background.jpg'%}"/>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="project-image">
+                         <img src="{%static 'img/rubik_background.jpg'%}"/>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="project-image">
+                         <img src="{%static 'img/rubik_background.jpg'%}"/>
+                      </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="project-content" id="project_4">
+    <span class="icon-close"><i class="pe-7s-close-circle"></i></span>
+    <div>
+      <div class="project-details">
+        <div class="container">
+          <div class="project-title">
+            {% for article in res.json_data.articles|slice:"4:5"%}
+            <h5>{{article.author}}<span>.</span></h5>
+            <h2>{{article.title}}</h2>
+          
+            <div class="separator-container">
+              <div class="separator line-separator">∎</div>
+            </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="project-text">
+              <p><span>Published</span>{{article.publishedAt}}</p>
+              <p><span>Web</span>{{article.source.name}}</p>
+              <p><span>Author</span>{{article.author}}</p>
+              <!-- <p><span>Size</span>1000sqft</p> -->
+              <br>
+              <p>{{article.content}}</p>
+              <p>{{article.description}}</p>
+            </div>
+          </div>
+          {% endfor %}
+            <div class="col-md-8">
+              <div class="row">
+                 <div class="col-md-6">
+                      <div class="project-image">
+                         <img src="{%static 'img/rubik_background.jpg'%}"/>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="project-image">
+                         <img src="{%static 'img/rubik_background.jpg'%}"/>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="project-image">
+                         <img src="{%static 'img/rubik_background.jpg'%}"/>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="project-image">
+                         <img src="{%static 'img/rubik_background.jpg'%}"/>
+                      </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="project-content" id="project_5">
+    <span class="icon-close"><i class="pe-7s-close-circle"></i></span>
+    <div>
+      <div class="project-details">
+        <div class="container">
+          <div class="project-title">
+            {% for article in res.json_data.articles|slice:"5:6"%}
+            <h5>{{article.author}}<span>.</span></h5>
+            <h2>{{article.title}}</h2>
+          
+            <div class="separator-container">
+              <div class="separator line-separator">∎</div>
+            </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="project-text">
+              <p><span>Published</span>{{article.publishedAt}}</p>
+              <p><span>Web</span>{{article.source.name}}</p>
+              <p><span>Author</span>{{article.author}}</p>
+              <!-- <p><span>Size</span>1000sqft</p> -->
+              <br>
+              <p>{{article.content}}</p>
+              <p>{{article.description}}</p>
+            </div>
+          </div>
+          {% endfor %}
+            <div class="col-md-8">
+              <div class="row">
+                  <div class="col-md-6">
+                      <div class="project-image">
+                         <img src="{%static 'img/rubik_background.jpg'%}"/>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="project-image">
+                         <img src="{%static 'img/rubik_background.jpg'%}"/>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="project-image">
+                         <img src="{%static 'img/rubik_background.jpg'%}"/>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="project-image">
+                         <img src="{%static 'img/rubik_background.jpg'%}"/>
+                      </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="project-content" id="project_6">
+    <span class="icon-close"><i class="pe-7s-close-circle"></i></span>
+    <div>
+      <div class="project-details">
+        <div class="container">
+          <div class="project-title">
+            {% for article in res.json_data.articles|slice:"6:7"%}
+            <h5>{{article.author}}<span>.</span></h5>
+            <h2>{{article.title}}</h2>
+          
+            <div class="separator-container">
+              <div class="separator line-separator">∎</div>
+            </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="project-text">
+              <p><span>Published</span>{{article.publishedAt}}</p>
+              <p><span>Web</span>{{article.source.name}}</p>
+              <p><span>Author</span>{{article.author}}</p>
+              <!-- <p><span>Size</span>1000sqft</p> -->
+              <br>
+              <p>{{article.content}}</p>
+              <p>{{article.description}}</p>
+            </div>
+          </div>
+          {% endfor %}
+        {% endfor %}<!--end loop for news.result-->
+            <div class="col-md-8">
+              <div class="row">
+                  <div class="col-md-6">
+                      <div class="project-image">
+                         <img src="{%static 'img/rubik_background.jpg'%}"/>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="project-image">
+                         <img src="{%static 'img/rubik_background.jpg'%}"/>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="project-image">
+                         <img src="{%static 'img/rubik_background.jpg'%}"/>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="project-image">
+                         <img src="{%static 'img/rubik_background.jpg'%}"/>
+                      </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+
+
+
